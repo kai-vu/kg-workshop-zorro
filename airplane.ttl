@@ -1,0 +1,296 @@
+@prefix : <https://zorro-project.nl/example/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+:Connector rdfs:subClassOf :Component .
+:Cover rdfs:subClassOf :Component .
+:Tube rdfs:subClassOf :Component .
+:Valve rdfs:subClassOf :Component .
+
+
+:AltAttachBolt
+  rdfs:subClassOf :Connector ;
+  rdfs:description "A bolt used for attaching the alternator to the engine." ;
+  skos:prefLabel "Alt Attach Bolt" ;
+  :connectedTo :Alternator , :Engine ;
+  :partOf :Engine .
+
+
+:Alternator
+  rdfs:subClassOf :Component ;
+  rdfs:description "A device that converts mechanical energy to electrical energy in an engine." ;
+  skos:prefLabel "Alternator" ;
+  :connectedTo :ElectricalSystem , :Engine ;
+  :partOf :ElectricalSystem ;
+  :produces :ElectricalEnergy .
+
+
+:BaffleSeal
+  rdfs:subClassOf :Connector ;
+  rdfs:description "A seal used on engine baffles to prevent air leaks." ;
+  skos:prefLabel "Baffle Seal" ;
+  :connectedTo :Engine , :EngineBaffle ;
+  :partOf :EngineBaffle ;
+  :reduces :Heat , :Sound ;
+  :variant :BaffleSeal .
+
+
+:Camshaft
+  rdfs:subClassOf :Component ;
+  rdfs:description "A shaft with cams to open and close engine valves synchronously with pistons." ;
+  skos:prefLabel "Camshaft" ;
+  :connectedTo :IdlerGear ;
+  :partOf :ValveTrain ;
+  :produces :Motion .
+
+
+:CompressionCheckValve
+  rdfs:subClassOf :Valve ;
+  rdfs:description "A valve used for measuring cylinder compression in an engine." ;
+  skos:prefLabel "Compression Check Valve" ;
+  :connectedTo :Cylinder , :Engine ;
+  :partOf :Engine .
+
+
+:CoolingSystem
+  rdfs:subClassOf :System ;
+  skos:prefLabel "Cooling System" ;
+  :partOf :Engine .
+
+
+:Cowling
+  rdfs:subClassOf :Cover ;
+  rdfs:description "The removable cover of an aircraft engine for streamlining and protection." ;
+  skos:prefLabel "Cowling" ;
+  :connectedTo :AircraftFrame , :Engine ;
+  :partOf :Engine .
+
+
+:Cylinder
+  rdfs:subClassOf :Component ;
+  rdfs:altLabel "Cyl" ;
+  rdfs:description "A chamber in the engine where fuel combustion occurs, driving the piston." ;
+  skos:prefLabel "Cylinder" ;
+  :connectedTo :Camshaft , :ExhaustValve , :Intake , :RockerArm , :SparkPlug ;
+  :partOf :Engine ;
+  :produces :Gases , :Heat , :Power , :Vibration ;
+  :variant :Cylinder1 , :Cylinder2 , :Cylinder3 , :Cylinder4 .
+
+
+:ElectricalSystem
+  rdfs:subClassOf :System ;
+  skos:prefLabel "Electrical System" ;
+  :partOf :Engine .
+
+
+:ExhaustValve
+  rdfs:subClassOf :Valve ;
+  rdfs:description "A valve that allows exhaust gases to exit the combustion chamber." ;
+  skos:prefLabel "Exhaust Valve" ;
+  :connectedTo :Cylinder , :ExhaustSystem ;
+  :partOf :Engine ;
+  :produces :Gases .
+
+
+:FuelDistributor
+  rdfs:subClassOf :Component ;
+  rdfs:description "A component that evenly distributes fuel to the cylinders of an engine." ;
+  skos:prefLabel "Fuel Distributor" ;
+  :connectedTo :Cylinder ;
+  :partOf :FuelSystem ;
+  :produces :FuelFlow .
+
+
+:FuelPressureGauge
+  rdfs:subClassOf :Component ;
+  rdfs:description "A device that measures the pressure of fuel in the fuel line." ;
+  skos:prefLabel "Fuel Pressure Gauge" ;
+  :connectedTo :Cockpit , :FuelLine ;
+  :partOf :FuelSystem ;
+  :produces :PressureReading .
+
+
+:FuelServo
+  rdfs:subClassOf :Component ;
+  rdfs:description "A device that regulates fuel flow to the engine." ;
+  skos:prefLabel "Fuel Servo" ;
+  :connectedTo :Engine , :FuelSystem ;
+  :partOf :Engine ;
+  :produces :FuelFlow .
+
+
+:FuelSystem
+  rdfs:subClassOf :System ;
+  skos:prefLabel "Fuel System" ;
+  :partOf :Engine .
+
+
+:FuelTransducer
+  rdfs:subClassOf :Component ;
+  rdfs:description "A device that converts fuel pressure or flow into a measurable electrical signal." ;
+  skos:prefLabel "Fuel Transducer" ;
+  :connectedTo :Engine ;
+  :partOf :FuelSystem ;
+  :produces :ElectricalSignal .
+
+
+:Gasket
+  rdfs:subClassOf :Connector ;
+  rdfs:description "A sealant between two surfaces to prevent leakage of fluids." ;
+  skos:prefLabel "Gasket" .
+
+
+:HoseClamp
+  rdfs:subClassOf :Connector ;
+  rdfs:description "A device used to attach and seal a hose onto a fitting." ;
+  skos:prefLabel "Hose Clamp" .
+
+
+:IdlerGear
+  rdfs:subClassOf :Component ;
+  skos:prefLabel "Idler Gear" ;
+  :produces :Motion , :Sound .
+
+
+:IgnitionSystem
+  rdfs:subClassOf :System ;
+  skos:prefLabel "Ignition System" ;
+  :partOf :Engine .
+
+
+:InductionTube
+  rdfs:subClassOf :Tube ;
+  skos:prefLabel "Induction Tube" ;
+  :produces :Airflow .
+
+
+:Intake
+  rdfs:subClassOf :Component ;
+  :produces :Airflow .
+
+
+:LubricationSystem
+  rdfs:subClassOf :System ;
+  skos:prefLabel "Lubrication System" ;
+  :partOf :Engine .
+
+
+:MagBlastTube
+  rdfs:subClassOf :Tube ;
+  rdfs:description "A tube for directing cooling air to the magnetos in an engine." ;
+  skos:prefLabel "Mag Blast Tube" ;
+  :connectedTo :Engine , :Magneto ;
+  :partOf :CoolingSystem ;
+  :produces :CoolingAirFlow ;
+  :variant :MagBlastTube .
+
+
+:Magneto
+  rdfs:subClassOf :Alternator ;
+  rdfs:description "Electrical generators that produce high voltage for spark plugs in engines." ;
+  skos:prefLabel "Magneto" ;
+  :connectedTo :Engine , :SparkPlug ;
+  :partOf :ElectricalSystem , :IgnitionSystem ;
+  :produces :ElectricalEnergy , :Sparks ;
+  :variant :Magneto .
+
+
+:MixtureControl
+  rdfs:subClassOf :Component ;
+  rdfs:description "A control in the cockpit that adjusts the air-to-fuel ratio in the engine." ;
+  skos:prefLabel "Mixture Control" ;
+  :connectedTo :Carburetor , :Cockpit , :InjectionSystem ;
+  :partOf :Cockpit .
+
+
+:OilCooler
+  rdfs:subClassOf :Component ;
+  skos:prefLabel "Oil Cooler" ;
+  :reduces :Heat .
+
+
+:OilDipstick
+  rdfs:subClassOf :Component ;
+  rdfs:description "A tool for measuring the oil level in the engine." ;
+  skos:prefLabel "Oil Dipstick" ;
+  :connectedTo :Engine , :OilSump ;
+  :partOf :Engine .
+
+
+:OilFillerTube
+  rdfs:subClassOf :Tube ;
+  rdfs:description "A tube through which oil is added to the engine." ;
+  skos:prefLabel "Oil Filler Tube" ;
+  :connectedTo :Engine , :OilSump ;
+  :partOf :Engine .
+
+
+:OilPressureReliefValve
+  rdfs:subClassOf :Valve ;
+  rdfs:description "A valve that regulates oil pressure in the engine." ;
+  skos:prefLabel "Oil Pressure Relief Valve" ;
+  :connectedTo :Engine , :OilSystem ;
+  :partOf :LubricationSystem ;
+  :produces :PressureRegulation .
+
+
+:OilReturnLine
+  rdfs:subClassOf :Component ;
+  rdfs:description "A line that carries excess oil back to the oil sump or reservoir." ;
+  skos:prefLabel "Oil Return Line" ;
+  :connectedTo :Engine , :OilSump ;
+  :partOf :LubricationSystem ;
+  :produces :OilFlow ;
+  :variant :OilReturnLine1 , :OilReturnLine2 .
+
+
+:RockerArm
+  rdfs:subClassOf :Component ;
+  rdfs:description "A lever that transmits motion from the camshaft to the valve in an engine." ;
+  skos:prefLabel "Rocker Arm" ;
+  :connectedTo :Camshaft , :RockerCover , :Valve ;
+  :partOf :Engine ;
+  :produces :Motion .
+
+
+:SparkPlug
+  rdfs:subClassOf :Component ;
+  rdfs:description "A device that delivers electric current to the combustion chamber to ignite fuel." ;
+  skos:prefLabel "Spark Plug" ;
+  :connectedTo :Cylinder , :Magneto ;
+  :partOf :IgnitionSystem ;
+  :produces :Heat , :Sparks ;
+  :variant :SparkPlug1 , :SparkPlug2 , :SparkPlug3 , :SparkPlug4 .
+
+
+:Tappet
+  rdfs:subClassOf :Component ;
+  rdfs:description "A component in the valve train that transfers motion from the camshaft." ;
+  skos:prefLabel "Tappet" ;
+  :connectedTo :Camshaft , :Valves ;
+  :partOf :Camshaft ;
+  :produces :Motion .
+
+
+:VacuumTube
+  rdfs:subClassOf :Tube ;
+  rdfs:description "A tube that creates and maintains a vacuum to operate certain systems." ;
+  skos:prefLabel "Vacuum Tube" ;
+  :connectedTo :Engine , :VariousVacuumSystems ;
+  :partOf :Engine ;
+  :produces :Vacuum .
+
+
+:ValveCover
+  rdfs:subClassOf :Cover ;
+  rdfs:description "A cover for the engine's valve mechanism to protect and prevent oil leaks." ;
+  skos:prefLabel "Valve Cover" ;
+  :connectedTo :CylinderHead ;
+  :partOf :ValveTrain .
+
+
+:ValveTrain
+  rdfs:subClassOf :System ;
+  rdfs:description "A mechanical system that controls operation of the valves in an internal combustion engine." ;
+  skos:prefLabel "Valve Train" ;
+  :partOf :Engine .

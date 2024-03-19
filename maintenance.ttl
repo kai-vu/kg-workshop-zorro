@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix : <https://zorro-project.nl/example/>.
+
+
+# Taxonomy of Problems
+:Problem rdfs:subClassOf :Event .
+:EngineProblem rdfs:subClassOf :Problem .
+:IdleOverrideProblem rdfs:subClassOf :EngineProblem .
+:PowerLossProblem rdfs:subClassOf :EngineProblem .
+
+:LeakProblem rdfs:subClassOf :Problem .
+:LooseProblem rdfs:subClassOf :Problem .
+
+:TornProblem rdfs:subClassOf :DamagedProblem .
+:CrackedProblem rdfs:subClassOf :DamagedProblem .
+:BrokenProblem rdfs:subClassOf :DamagedProblem .
+:DamagedProblem rdfs:subClassOf :WornProblem .
+:WornProblem rdfs:subClassOf :Problem .
+
+:BadProblem rdfs:subClassOf :Problem .
+:ShearProblem rdfs:subClassOf :Problem .
+:DirtyProblem rdfs:subClassOf :Problem .
+
+# Taxonomy of Actions
+:Action rdfs:subClassOf :Event .
+:AdjustedAction rdfs:subClassOf :Action .
+:InspectedAction rdfs:subClassOf :Action .
+:InstallatedAction rdfs:subClassOf :Action .
+:ReplacedAction rdfs:subClassOf :Action .
+:AttachedAction rdfs:subClassOf :Action .
+:TightenedAction rdfs:subClassOf :AttachedAction .
+:TorquedAction rdfs:subClassOf :TightenedAction .
+:SecuredAction rdfs:subClassOf :AttachedAction .
+:FastenedAction rdfs:subClassOf :AttachedAction .
+:CleanedAction rdfs:subClassOf :Action .
+:StopDrilledAction rdfs:subClassOf :Action .
+
+# Taxonomy of Outcomes
+:Outcome a rdfs:Class .
+:Fixed rdfs:subClassOf :Outcome .
+:NotFixed rdfs:subClassOf :Outcome .
+:Improved rdfs:subClassOf :Outcome .
+
+# Relations
+:requiredAction a rdf:Property ;
+    rdfs:domain :Problem ;
+    rdfs:range :Action .
+:resultsIn a rdf:Property ;
+    rdfs:domain :Action ;
+    rdfs:range :Outcome .
+:involvedPart a rdf:Property ;
+    rdfs:domain :Event ;
+    rdfs:range :Part .
+:location a rdf:Property ;
+    rdfs:domain :Part .
